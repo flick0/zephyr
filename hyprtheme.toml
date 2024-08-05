@@ -1,0 +1,19 @@
+name = "zephyr"
+desc = "lines!"
+version = "0.1.0"
+author = "flick0"
+repo = "https://github.com/flick0/dotfiles"
+branch = "zephyr"
+enabled = true
+module = []
+
+[theme]
+config = "theme.conf"
+
+[[link]]
+from = "quickshell/shell/starship.toml"
+to = "~/.config/starship.toml"
+
+[[link]]
+from = "quickshell/shell/fish/zephyr.fish"
+to = "~/.config/fish/conf.d/zephyr.fish"
