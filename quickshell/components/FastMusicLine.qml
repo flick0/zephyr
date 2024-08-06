@@ -59,8 +59,8 @@ Rectangle {
             model: segments
             onObjectAdded: (index,cubicPath) => {
                 print("Object added "+cubicPath)
-                cubicPath.strokeColor1 = Colors.primary;
-                cubicPath.strokeColor2 = Colors.tertiary;
+                cubicPath.strokeColor1 = Qt.binding(() => Colors.primary);
+                cubicPath.strokeColor2 = Qt.binding(() => Colors.primary);
                 cubicPath.segments = segments;
                 cubicPath.curveHeight = curveHeight;
                 cubicPath.curveWidth = curveWidth;

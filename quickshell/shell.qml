@@ -10,23 +10,25 @@ import "root:/"
 ShellRoot {
 	id: root
 
-	Timer {
-		interval: 500
-		running: true
-		onTriggered: {
-			var shellComponent = Qt.createComponent("root:/Main.qml")
-			if (shellComponent.status == Component.Ready) {
-				var shell = shellComponent.createObject(root)
-				if (shell == null) {
-					console.log("Error creating shell")
-				}
-			} else {
-				console.log("Error loading shell")
-				// get err
-				console.log(shellComponent.errorString())
-			}
-		}
-	}
+	Main {	}
+
+	// Timer {
+	// 	interval: 500
+	// 	running: true
+	// 	onTriggered: {
+	// 		var shellComponent = Qt.createComponent("root:/Main.qml")
+	// 		if (shellComponent.status == Component.Ready) {
+	// 			var shell = shellComponent.createObject(root)
+	// 			if (shell == null) {
+	// 				console.log("Error creating shell")
+	// 			}
+	// 		} else {
+	// 			console.log("Error loading shell")
+	// 			// get err
+	// 			console.log(shellComponent.errorString())
+	// 		}
+	// 	}
+	// }
 	
 	Component.onCompleted: {
 		print(Colors.primary)

@@ -42,6 +42,13 @@ Rectangle {
         text: workspace_label.text
     }
 
+    Connections {
+        target: Hyprland.focusedMonitor
+        onActiveWorkspaceChanged: {
+            workspace_label.handleWorkspaceChange()
+        }
+    }
+
     Text {
         color: Colors.primary
         font: txtMeter.font
@@ -84,9 +91,10 @@ Rectangle {
             }
             workspace_cell.prevWorkspaceId = currentWorkspace
         }
+        
 
         Component.onCompleted: {
-            Hyprland.focusedMonitor.activeWorkspaceChanged.connect(handleWorkspaceChange)
+            // Hyprland.focusedMonitor.activeWorkspaceChanged.connect(handleWorkspaceChange)
 
             // switch (workspaceId) {
             //     case 1:
