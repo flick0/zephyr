@@ -38,7 +38,7 @@ Rectangle {
         ShapePath {
             strokeColor: Colors.primary
             fillColor: "transparent"
-            strokeWidth: 4
+            strokeWidth: 6
             startX: 0; startY: parent.height/2
             // pathHints: ShapePath.PathQuadratic
  

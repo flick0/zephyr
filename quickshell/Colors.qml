@@ -59,10 +59,44 @@ Singleton {
     property color source_color: Qt.rgba(192/255,96/255,33/255,1)
 
     Process {
+        id: matugen_video
+
+        property string wallpaper_path: Qt.resolvedUrl(Config.wallpaperImage).toString().replace("file://", "")
+
+        command: ["sh","-c",`rm /tmp/zephyr_wallpaper.jpg;ffmpeg -i ${wallpaper_path} -vframes 1 /tmp/zephyr_wallpaper.jpg`]
+
+        onExited : (exitCode) => {
+            if (exitCode === 0) {
+                matugen.command = ["matugen","image","/tmp/zephyr_wallpaper.jpg","--json","hex"];
+                matugen.running = true;
+            } else {
+                console.log("Error generating wallpaper image");
+            }
+        }
+    }
+
+    Process {
 		property string wallpaper_path: Qt.resolvedUrl(Config.wallpaperImage).toString().replace("file://", "")
-		running: true
+		running: false
 		id: matugen
 		command: ["matugen","image",wallpaper_path,"--json","hex"]
+
+        Component.onCompleted: {
+            print("==================matugen==================");
+            var wUrl = Qt.resolvedUrl(Config.wallpaperImage).toString().replace("file://", "");
+            if (wUrl.endsWith(".mp4")) {
+                print("Wallpaper is a video");
+                matugen_video.running = true;
+            } else {
+                matugen.running = true;
+            }
+        }
+
+        stderr: SplitParser {
+            onRead: data => {
+                console.log(data);
+            }
+        }
 		
 		stdout: SplitParser {
 			onRead: data => {

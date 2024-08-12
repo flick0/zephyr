@@ -44,6 +44,6 @@ Singleton {
     property int workspaceBottomMargin : 10
 
 
-    readonly property url wallpaperImage : "root:/assets/Distance.gif"
+    readonly property url wallpaperImage : "root:/assets/zephyr.mp4"
     readonly property bool darkMode : true
 }

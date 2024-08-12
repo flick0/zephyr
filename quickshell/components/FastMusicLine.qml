@@ -16,9 +16,9 @@ Rectangle {
     color: "transparent"
 
     property int segments: 10;
-    property int curveWidth: Config.barWidth/15;
+    property int curveWidth: Config.barWidth/10;
     property int curveHeight: Config.barHeight/2;
-    property int curveSpill: 2;
+    property double curveSpill: 1.5;
 
     property variant cavaData: [0,0,0,0];
 
@@ -60,7 +60,7 @@ Rectangle {
             onObjectAdded: (index,cubicPath) => {
                 print("Object added "+cubicPath)
                 cubicPath.strokeColor1 = Qt.binding(() => Colors.primary);
-                cubicPath.strokeColor2 = Qt.binding(() => Colors.primary);
+                cubicPath.strokeColor2 = Qt.binding(() => Colors.tertiary);
                 cubicPath.segments = segments;
                 cubicPath.curveHeight = curveHeight;
                 cubicPath.curveWidth = curveWidth;
@@ -89,7 +89,7 @@ Rectangle {
                     );
                 }
 
-                strokeWidth: 4-1.2*cavaData[index];
+                strokeWidth: 6-2*cavaData[index];
                 strokeColor: (index%2==0?Qt.darker(color_mix(strokeColor1, strokeColor2, index/segments),1.5):color_mix(strokeColor1, strokeColor2, index/segments))
                 fillColor: "transparent"
                 startX: 0; startY: parent.height/2

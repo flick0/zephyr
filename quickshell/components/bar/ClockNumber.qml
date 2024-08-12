@@ -18,7 +18,7 @@ Canvas {
 
     property bool fixedWidth: false
 
-    property color bgColor: "coral"
+    property color bgColor: "red"
     property color boxShadow: "red"
     property int textShadowWidth: 2
     property bool noBackgroundForZero: false
@@ -49,6 +49,10 @@ Canvas {
         font.pixelSize: Config.workspaceFontSize/2
         font.bold: true
         text: toNum
+    }
+
+    onBgColorChanged: {
+        requestPaint();
     }
 
     onPaint: {
