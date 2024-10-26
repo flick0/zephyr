@@ -3,13 +3,13 @@
 add_newline = true
 
 format = """
-[](#ffb2b9)$directory[](#ffb2b9) """
+[](#88d6ba)$directory[](#88d6ba) """
 
-right_format = """$character [](fg:#e8c08e)$cmd_duration[](fg:#e8c08e)"""
+right_format = """$character [](fg:#a8cbe1)$cmd_duration[](fg:#a8cbe1)"""
 
 [cmd_duration]
 min_time = 0
-format = "[$duration](bg:#e8c08e fg:#442b06)"
+format = "[$duration](bg:#a8cbe1 fg:#0c3446)"
 
 [character]
 format = "$symbol"
@@ -20,10 +20,10 @@ error_symbol = "[](fg:#ffb4ab)[](fg:#ffb4ab)"
 
 [fill]
 symbol = ''
-style = 'bold fg:#ffb2b9'
+style = 'bold fg:#88d6ba'
 
 [directory]
-style = "bg:#ffb2b9 fg:#561d26"
+style = "bg:#88d6ba fg:#00382a"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"

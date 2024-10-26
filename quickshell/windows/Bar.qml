@@ -33,7 +33,8 @@ PanelWindow {
     anchors {
         left: true
         right: true
-        bottom: true
+        top: true
+        // bottom: true
     }	
 
     Rectangle {

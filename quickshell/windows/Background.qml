@@ -12,6 +12,8 @@ PanelWindow {
 	exclusionMode: ExclusionMode.Ignore
     WlrLayershell.layer: WlrLayer.Background
 
+    color: "transparent"
+
     anchors {
         top: true
         left: true

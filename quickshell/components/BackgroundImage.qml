@@ -45,5 +45,68 @@ Rectangle {
             }
         }
     }
+
+    layer.enabled: true
+        layer.effect: ShaderEffect {
+                    id: shaderEffect
+                    anchors.fill: parent
+                    // width: parent.width/2
+                    // height: parent.height/2
+
+                    Process {
+                id: cursorpos
+                running: true
+                command: [ "hyprctl", "cursorpos" ]
+                stdout: SplitParser {
+                    onRead: data => {
+                        var pos = data.split(" ");
+                        shaderEffect.pointA = Qt.point(parseInt(pos[0]), parseInt(pos[1]));
+                    }
+                }
+            }
+
+            Timer {
+                id: timer
+                interval: 1000 / 165
+                running: true
+                repeat: true
+
+                onTriggered: {
+
+                    function updateCursor() {
+                        cursorpos.running = false;
+                        cursorpos.running = true;
+                    }
+
+                    updateCursor();
+
+                    function distance(p1, p2) {
+                        return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+                    }
+
+                    var d = distance(shaderEffect.pointA, Qt.point(parent.width/2,parent.height/2));
+
+                    var dx = shaderEffect.pointA.x - shaderEffect.pointB.x;
+                    var dy = shaderEffect.pointA.y - shaderEffect.pointB.y;
+
+                    shaderEffect.pointB.x += 10*dx/500
+                    shaderEffect.pointB.y += 10*dy/500
+
+                    shaderEffect.pointB = shaderEffect.pointB;
+                }
+            }
+
+                    property int gheight: parent.height
+                    property int gwidth: parent.width
+
+                    property var points: [Qt.point(200,200),Qt.point(500,500),Qt.point(width,height)]
+
+                    property var pointA: Qt.point(width, height)
+                    property var pointB: Qt.point(width/2, height/2)
+
+                    fragmentShader: "shader.frag.qsb"
+                }
+    
+    
 }
 
